@@ -1,0 +1,16 @@
+.Todo-List{
+    width: 100vw;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    border: none;
+}
+.header-todolist{
+    padding: 0.3rem;
+}
+
+.header-todolist h1{
+    font-size: 1.8rem;
+}
