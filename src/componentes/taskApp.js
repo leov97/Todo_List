@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import InicioApp from './todoList'
 import './taskApp.css';
-import AddTasks from '../hooks/AddTask';
+import AddTasks from './AddTask';
+import handleDelete from '../hooks/delete';
 
-function TaskTable() {
-  const [tasks, setTasks] = useState([]);
+
+function TaskTable(props) {
+  
+  const [tasks, setTasks] = useState([]);  
 
   useEffect(() => {
-    fetch('http://localhost:5000/task')
+    fetch('http://localhost:5000/task', {method:'GET'})
       .then(response => response.json())
       .then(data => setTasks(data.task));
-
-      
-  }, []);
+  }, [tasks]);
 
 
   return (
@@ -41,12 +42,18 @@ function TaskTable() {
         <tbody>
           {
             tasks.map((task, index) => (
-            <tr key={index+1}>
-              <td>{task.id}</td>
+            <tr key={task.id}>
+              <td hidden>{task.id}</td>
+              <td>{index+1}</td>
               <td>{task.detalles}</td>
               <td>{task.estado}</td>
-              <td>editar</td>
-              <td>eliminar</td>
+              
+              <td><button className='btn-edit'
+              
+              >edit</button>
+              </td>
+
+              <td><button className='btn-delete' onClick={handleDelete} data-id={task.id}>delete</button></td>
             </tr>
           ))}
         </tbody>

@@ -20,3 +20,40 @@
     
 }
 
+
+
+.btn-edit{
+    width: 3rem;
+    height: 1.7rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(216, 210, 210);
+    color: black;
+}
+
+.btn-edit:hover{
+    background-color: rgb(154, 151, 151);
+}
+
+.btn-edit:active{
+    background-color: rgb(200, 197, 197);
+}
+
+.btn-delete{
+    width: 3.4rem;
+    height: 1.7rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(223, 46, 46);
+    color: black;
+}
+
+.btn-delete:hover{
+    background-color: rgb(163, 1, 1);
+}
+
+.btn-delete:active{
+    background-color: rgb(200, 197, 197);
+}
+
+
