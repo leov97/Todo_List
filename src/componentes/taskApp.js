@@ -1,33 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import InicioApp from './todoList'
-import './taskApp.css';
-import AddTasks from './AddTask';
-import handleDelete from '../hooks/delete';
+import './style/Addtask.css';
+import './style/taskApp.css';
+import "./style/todoList.css"
+import handleDelete from '../api/delete';
+import { useGet } from '../api/useGet';
+import { useAdd } from '../api/useAddTask';
+
 
 
 function TaskTable(props) {
-  
-  const [tasks, setTasks] = useState([]);  
-
-  useEffect(() => {
-    fetch('http://localhost:5000/task', {method:'GET'})
-      .then(response => response.json())
-      .then(data => setTasks(data.task));
-  }, [tasks]);
-
+  const {register, handleSubmit, setDetalles}= useAdd()
+  const tasks = useGet()
 
   return (
     <>
     
-    <InicioApp/>
+    <div className="Todo-List">
+        <header className="header-todolist">
+        <h1>Todo List</h1>
+        </header>
+    </div>
    
 
 
     <div className="contenedor-todlist">
       
       <div className="contenedor-tasks">
-        <AddTasks/>
-
+        <form onSubmit={handleSubmit} className="addtask" >
+            <label>Add task</label>
+             <input 
+             type='text'
+             className='inp-registro' 
+             onChange={(add)=> 
+                setDetalles(add.target.value)} 
+                {...register("example")} />
+            
+             <button type="submit" >Add task</button>
+            
+        </form>
 
       <table className='table' >
         <thead>
@@ -48,12 +58,22 @@ function TaskTable(props) {
               <td>{task.detalles}</td>
               <td>{task.estado}</td>
               
-              <td><button className='btn-edit'
+              <td>
+              <button 
+              className='btn-edit'
+             
               
               >edit</button>
               </td>
 
-              <td><button className='btn-delete' onClick={handleDelete} data-id={task.id}>delete</button></td>
+              <td>
+              <button 
+              className='btn-delete' 
+              onClick={handleDelete} 
+              data-id={task.id}>delete
+              </button>
+              </td>
+
             </tr>
           ))}
         </tbody>
