@@ -9,3 +9,27 @@
     gap: 1rem;
 
 }
+
+.addtask button{
+    border: none;
+    border-radius: 6px;
+    width: 3rem;
+    height: 2rem;
+    background-color: #161a1d;
+    color: white;
+}
+
+.addtask input{
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+}
+
+.addtask button:hover{
+    background-color: #727477 ;
+}
+
+.addtask label{
+    font-weight:bold ;
+}

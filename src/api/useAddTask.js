@@ -1,5 +1,5 @@
 import { useForm} from 'react-hook-form';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export const useAdd = () =>{
     const{register,watch, reset}=useForm()
@@ -14,18 +14,21 @@ export const useAdd = () =>{
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ detalles: watch("example") })
+        body: JSON.stringify({ detalles: watch("add-task") })
       })
       const data = await response.json()
       
         console.log(data)
      
-        reset();    }catch (error) {
+        reset();    
+      }catch (error) {
           console.log(error)}
     },[reset])
 
       
-  
+  useEffect(( )=>{
+    
+  },[detalles])
 
 
     return {register,  handleSubmit, setDetalles}

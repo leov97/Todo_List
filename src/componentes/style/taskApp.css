@@ -24,7 +24,7 @@
 
 .btn-edit{
     width: 3rem;
-    height: 1.7rem;
+    height: 2rem;
     border: none;
     border-radius: 5px;
     background-color: rgb(216, 210, 210);
@@ -40,8 +40,8 @@
 }
 
 .btn-delete{
-    width: 3.4rem;
-    height: 1.7rem;
+    width: 3rem;
+    height: 2rem;
     border: none;
     border-radius: 5px;
     background-color: rgb(223, 46, 46);

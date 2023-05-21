@@ -79,9 +79,25 @@ def Update_task(id):
         password="system21711227",
         database="todo_list")
     cursor = bdTask.cursor()
-    detalles = request.json['detalles']
-    query = ("UPDATE task SET detalles = %s WHERE id = %s")
-    values = (detalles, id)
+
+    detalles = request.json.get('detalles')  # Utilizar get() para obtener el valor sin generar error si no está presente
+    estado = request.json.get('estado')  # Utilizar get() para obtener el valor sin generar error si no está presente
+    
+    # Verificar qué campos se proporcionaron y construir la consulta SQL dinámicamente
+    if detalles is not None and estado is not None:
+        query = "UPDATE task SET detalles = %s, estado = %s WHERE id = %s"
+        values = (detalles, bool(estado), id)
+    elif detalles is not None:
+        query = "UPDATE task SET detalles = %s WHERE id = %s"
+        values = (detalles, id)
+    elif estado is not None:
+        query = "UPDATE task SET estado = %s WHERE id = %s"
+        values = (bool(estado), id)
+    else:
+        # Si no se proporciona ningún campo válido para actualizar, devolver una respuesta de error
+        response = {'mensaje': 'No se proporcionaron campos válidos para actualizar'}
+        return jsonify(response), 400
+
     cursor.execute(query, values)
     bdTask.commit()
     response = {'mensaje':'registro actualizado'}
